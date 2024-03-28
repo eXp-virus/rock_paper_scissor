@@ -37,6 +37,11 @@ let computerScore = 0;
 function PlayGame() {
     for(let i=0; i<5; i++) {
         playerSelection = prompt("Your choice: ").toLowerCase();
+        //continue prompting until user enters a valid input
+        while(playerSelection != "rock" && playerSelection != "paper" && playerSelection != "scissor") {
+            console.log("Please enter valid input")
+            playerSelection = prompt("Your choice: ").toLowerCase();
+        }
         computerSelection = getComputerChoice();
         console.log("Computer:", computerSelection);
         console.log(playRound(playerSelection, computerSelection));
