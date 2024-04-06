@@ -34,6 +34,8 @@ let playerScore = 0;
 let computerScore = 0;
 
 const btn = document.querySelector("#selection");
+let pScore = document.querySelector('#pscore');
+let cScore = document.querySelector('#cscore');
 btn.addEventListener('click', (event) => {
     let target = event.target;
     computerSelection = getComputerChoice();
@@ -42,20 +44,32 @@ btn.addEventListener('click', (event) => {
     switch (target.id) {
         case 'rock':
             console.log("Computer's choice:", computerSelection)
-            //console.log(playRound('rock', computerSelection))
-            result.textContent = `${playRound('rock', computerSelection)}`;
+            roundWinner = playRound('rock', computerSelection);
+            calScore();
+            result.textContent = `${roundWinner}`;
             break;
 
         case 'paper':
             console.log("Computer's choice:", computerSelection)
-            result.textContent = `${playRound('paper', computerSelection)}`;
+            roundWinner = playRound('paper', computerSelection);
+            calScore();
+            result.textContent = `${roundWinner}`;
             break;
         case 'scissor':
 
             console.log("Computer's choice:", computerSelection)
-            result.textContent = `${playRound('scissor', computerSelection)}`;
+            roundWinner = playRound('scissor', computerSelection);
+            calScore();
+            result.textContent = `${roundWinner}`;
             break;
 
     }
+    pScore.textContent = `Your Score: ${playerScore}`;
+    cScore.textContent = `Computer's Score: ${computerScore}`;
 
 });
+
+function calScore() {
+    if(roundWinner == 'You win!') playerScore++;
+    else if(roundWinner == 'You lose!') computerScore++;
+}
